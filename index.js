@@ -3,7 +3,9 @@ const port = 8000;
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
-
+// require cookie
+const cookieParser = require('cookie-parser');
+const { urlencoded } = require('express');
 
 app.use(expressLayouts);
 app.use(express.static('./assets'));
@@ -13,7 +15,8 @@ app.set('view engine','ejs');
 app.set('views','./views');
 
 
-
+app.use(cookieParser());
+app.use(urlencoded());
 
 //extract styles and scripts
 app.set('layout extractStyles',true);
