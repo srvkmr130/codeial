@@ -11,10 +11,21 @@ module.exports.home = function(req,res)
 
 module.exports.signUp = function(req,res)
 {
+    if(req.isAuthenticated())
+    {
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_sign_up');
 };
+
 module.exports.signIn = function(req,res)
 {
+    if(req.isAuthenticated())
+    {
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_sign_in');
 };
 
@@ -39,4 +50,10 @@ if(req.body.password != req.body.confirm_password)
         else
         res.redirect('back');
     });
+}
+
+
+//sign in and create a session for the user
+module.exports.createSession = function(req,res){
+    return res.redirect('/');
 }
