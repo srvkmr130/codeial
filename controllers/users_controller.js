@@ -57,3 +57,9 @@ if(req.body.password != req.body.confirm_password)
 module.exports.createSession = function(req,res){
     return res.redirect('/');
 }
+
+//sign out 
+module.exports.destroySession = function(req,res){
+    req.logout();
+    return res.redirect('/')
+}
