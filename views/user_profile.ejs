@@ -8,4 +8,11 @@
         <%= user.email %>
     </p>
 </div>
+<section id="feed-posts">
+    <h4>Posts</h4>
+    <form action="/posts/create-post" id = "new-form-post" method = "post">
+        <textarea name="content" cols="30" rows="5"></textarea>
+        <input type="submit" value="Post">
+    </form>
+</section>
 

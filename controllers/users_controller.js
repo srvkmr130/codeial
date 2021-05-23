@@ -15,8 +15,7 @@ module.exports.signUp = function(req,res)
     {
         return res.redirect('/users/profile');
     }
-
-    return res.render('user_sign_up');
+    else return res.render('user_sign_up');
 };
 
 module.exports.signIn = function(req,res)
@@ -30,10 +29,10 @@ module.exports.signIn = function(req,res)
 };
 
 module.exports.create = function(req,res){
-if(req.body.password != req.body.confirm_password)
+    if(req.body.password != req.body.confirm_password)
     {
         console.log('Password doesn\'t match');
-        res.redirect('back');
+        return res.redirect('back');
     }
     User.findOne({email:req.body.email},function(err,user)
     {
@@ -54,7 +53,7 @@ if(req.body.password != req.body.confirm_password)
 
 //sign in and create a session for the user
 module.exports.createSession = function(req,res){
-    return res.redirect('/');
+    return res.redirect('/users/profile');
 }
 
 //sign out 
