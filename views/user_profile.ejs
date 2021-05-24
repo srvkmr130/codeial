@@ -15,4 +15,15 @@
         <input type="submit" value="Post">
     </form>
 </section>
+<section id="display-posts">
+    <div id ="posts-list-container">
+        <ul>
+            <% for(post of posts) { %>
+                <li><%=post.content%>
+                    (post by : <%= post.user.name%>)
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</section>
 
