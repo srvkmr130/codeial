@@ -21,6 +21,10 @@
             <% for(post of posts) { %>
                 <li><%=post.content%>
                     (post by : <%= post.user.name%>)
+                    <form action="/posts/comments/add-comment">
+                        <textarea name="content" cols="50" rows="3"></textarea>
+                        <input type="submit" value="Comment">
+                    </form>
                 </li>
             <% } %>
         </ul>
