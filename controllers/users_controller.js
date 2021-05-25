@@ -4,7 +4,8 @@ const Post = require('../models/post');
 module.exports.profile = function(req,res)
 {
     //populate the user of each post
-    Post.find({}).populate('user').exec(function(err,posts){
+    Post.find({user:req.user._id}).populate('user').exec(function(err,posts){
+        console.log(posts);
         if(err) return console.log(err);
         return res.render('user_profile',{
             posts:posts

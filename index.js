@@ -55,6 +55,9 @@ app.use(session({
         {
             mongoUrl:'mongodb://localhost/codeial_development',
             autoRemove:'disabled'
+        },function(err)
+        {
+            console.log(err || 'connect-mongo failed');
         }
     )
 }));
