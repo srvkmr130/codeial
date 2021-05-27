@@ -3,15 +3,17 @@ const Post = require('../models/post');
 
 module.exports.profile = function(req,res)
 {
-    //populate the user of each post
-    Post.find({user:req.user._id}).populate('user').exec(function(err,posts){
+    //populate the user of each post  //{user:req.user._id}
+    Post.find({})
+    .populate('user')
+    .populate({path:'comments' , populate:{path:'user'}})  // nested populate
+    .exec(function(err,posts){
         console.log(posts);
         if(err) return console.log(err);
         return res.render('user_profile',{
             posts:posts
         });
     });
-
 }
 module.exports.home = function(req,res)
 {

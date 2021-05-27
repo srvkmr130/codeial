@@ -21,6 +21,17 @@
             <% for(post of posts) { %>
                 <li><%=post.content%>
                     (post by : <%= post.user.name%>)
+
+                    <div>
+                        <ul>
+                            <% for (comment of post.comments) { %>
+                            <li> 
+                                <%= comment.content %> by : 
+                                <em><%= comment.user.name %></em>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </div>
                     <div>
                         <form action="/comments/create" method="POST">
                             <input name="content" type="text" placeholder="Add comment...">
