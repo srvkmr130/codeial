@@ -19,12 +19,18 @@
     <div id ="posts-list-container">
         <ul>
             <% for(post of posts) { %>
+                <% if(locals.user && (locals.user.id == post.user.id)) {%>
+                    <a href="/posts/destroy/<%= post.id %>"> X </a>
+                    <% } %>
                 <li><%=post.content%>
                     (post by : <%= post.user.name%>)
 
                     <div>
                         <ul>
                             <% for (comment of post.comments) { %>
+                                <% if(locals.user && (locals.user.id == comment.user.id)) {%>
+                                    <a href="/comments/destroy/<%= comment.id %>"> X </a>
+                                    <% } %>
                             <li> 
                                 <%= comment.content %> by : 
                                 <em><%= comment.user.name %></em>

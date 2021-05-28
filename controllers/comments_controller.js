@@ -24,3 +24,20 @@ module.exports.create = function(req,res){
         }
     });
 }
+
+module.exports.destroy = function(req,res){
+    Comment.findById(req.params.id , function(err,comment){
+        console.log('Comment found',comment);
+        if(comment.user == req.user.id){
+            Post.findById(comment.post,function(err,post){
+                console.log('Post linked',post);
+                post.comments.remove(comment);
+            });
+            comment.remove();
+            return res.redirect('back');
+        }
+        else{
+            return console.log(err);
+        }
+});
+}
