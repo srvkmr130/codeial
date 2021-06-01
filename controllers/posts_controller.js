@@ -14,7 +14,8 @@ module.exports.create = function(req,res){
 
 module.exports.destroy = function(req,res){
     Post.findById(req.params.id , function(err,post){
-        // .id means converting the object id into string
+        // .id means converting the object id into string . Note ( user._id is of type ObjectId and
+        // using user.id means it gets the string of user._id)
         if(post.user == req.user.id){
             post.remove();
              

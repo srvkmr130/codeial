@@ -29,12 +29,21 @@ module.exports.destroy = function(req,res){
     Comment.findById(req.params.id , function(err,comment){
         console.log('Comment found',comment);
         if(comment.user == req.user.id){
-            Post.findById(comment.post,function(err,post){
-                console.log('Post linked',post);
-                post.comments.remove(comment);
-            });
+
+            let postId = comment.post;
             comment.remove();
-            return res.redirect('back');
+            Post.findByIdAndUpdate(postId , {$pull:{comments:req.params.id}},function(err,post){
+                return res.redirect('back');
+            });
+
+            // Way 2
+
+            // Post.findById(comment.post,function(err,post){
+            //     console.log('Post linked',post);
+            //     post.comments.remove(comment);
+            // });
+            // comment.remove();
+            // return res.redirect('back');
         }
         else{
             return console.log(err);

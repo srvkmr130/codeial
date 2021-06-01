@@ -3,18 +3,29 @@ const Post = require('../models/post');
 
 module.exports.profile = function(req,res)
 {
-    //populate the user of each post  //{user:req.user._id}
-    Post.find({})
-    .populate('user')
-    .populate({path:'comments' , populate:{path:'user'}})  // nested populate
-    .exec(function(err,posts){
-        console.log(posts);
-        if(err) return console.log(err);
+    User.findById(req.params.id,function(err,user){
+        if(err) {return console.log('Error',err);}
         return res.render('user_profile',{
-            posts:posts
+            profile_user:user
         });
-    });
+    })
 }
+
+module.exports.update = function(req,res)
+{
+    console.log('Here')
+    if(req.user.id == req.params.id)
+    {
+        User.findByIdAndUpdate(req.params.id, req.body, function(err,user){
+            return res.redirect('back');
+        });
+    }
+    else
+    {
+        return res.status(401).send('Unauthorized');
+    }
+}
+
 module.exports.home = function(req,res)
 {
     return res.end('<h1> Users </h1>');
@@ -47,7 +58,7 @@ module.exports.create = function(req,res){
     }
     User.findOne({email:req.body.email},function(err,user)
     {
-        if(err) { console.log('Error in finding user while sign up'); return;}
+        if(err) {console.log('Error in finding user while sign up'); return;}
         if(!user)
         {
             User.create(req.body,function(err,user)
@@ -64,7 +75,7 @@ module.exports.create = function(req,res){
 
 //sign in and create a session for the user
 module.exports.createSession = function(req,res){
-    return res.redirect('/users/profile');
+    return res.redirect('/users/home');
 }
 
 //sign out 
