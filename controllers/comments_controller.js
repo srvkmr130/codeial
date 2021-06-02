@@ -1,42 +1,37 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 
-module.exports.create = function(req,res){
-    Post.findById(req.body.post, function(err,post){
-      if(post){
-            Comment.create({
+module.exports.create = async function(req,res){
+
+    try {
+        let post = await Post.findById(req.body.post);
+        if(post){
+            let comment = await Comment.create({
                 content:req.body.content,
                 post:req.body.post,
                 user:req.user._id
-            },function(err,Comment){
-                if(err)
-                {
-                    return console.log(err);
-                }
-                post.comments.push(Comment); 
-                post.save();
-    
-                return res.redirect('/');
             });
+                
+            post.comments.push(comment); 
+            post.save();
+
+            return res.redirect('/');
         }
-        else{
-            return console.log(err);
-        }
-    });
+    } catch (error) {
+        console.log('Error',error);
+        return;
+    }
 }
 
-module.exports.destroy = function(req,res){
-    Comment.findById(req.params.id , function(err,comment){
-        console.log('Comment found',comment);
-        if(comment.user == req.user.id){
-
-            let postId = comment.post;
-            comment.remove();
-            Post.findByIdAndUpdate(postId , {$pull:{comments:req.params.id}},function(err,post){
-                return res.redirect('back');
-            });
-
-            // Way 2
+module.exports.destroy = async function(req,res){
+    try {
+    let comment = await Comment.findById(req.params.id);
+    if(comment.user == req.user.id){
+        let postId = comment.post;
+        comment.remove();
+        await Post.findByIdAndUpdate(postId , {$pull:{comments:req.params.id}});
+        return res.redirect('back');
+        // Way 2
 
             // Post.findById(comment.post,function(err,post){
             //     console.log('Post linked',post);
@@ -44,9 +39,9 @@ module.exports.destroy = function(req,res){
             // });
             // comment.remove();
             // return res.redirect('back');
-        }
-        else{
-            return console.log(err);
-        }
-});
+    }
+    } catch (error) {
+        console.log('Error',error);
+        return;
+    }
 }
