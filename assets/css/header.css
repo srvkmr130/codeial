@@ -1,0 +1,33 @@
+.btn-primary {
+  background-color: #6f4698;
+  border-color: #5b0879; }
+  .btn-primary:hover {
+    background-color: #deb1c978;
+    border-color: transparent;
+    box-shadow: 6px 7px 10px 2px #9f6db1;
+    color: #370347; }
+
+#navHeader {
+  background: linear-gradient(to bottom, #9a6c97, #b3a8bf); }
+  #navHeader .navbar-brand {
+    color: #3f2c52; }
+  #navHeader #user-info {
+    display: flex; }
+    #navHeader #user-info div {
+      margin: 0 15px; }
+      #navHeader #user-info div h3 {
+        margin-top: 2%; }
+        #navHeader #user-info div h3:hover {
+          animation: jello;
+          animation-duration: 0.5s; }
+      #navHeader #user-info div #user-name {
+        text-decoration: none;
+        color: #3f2c52;
+        padding: 4px 8px; }
+        #navHeader #user-info div #user-name:hover {
+          color: #5b0879;
+          transition: 1s all ease-in-out; }
+  #navHeader #register {
+    display: flex; }
+    #navHeader #register div {
+      margin-left: 15px; }

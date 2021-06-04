@@ -1,7 +1,36 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="/css/header.css">
+<script src="https://kit.fontawesome.com/1e28e246ae.js" crossorigin="anonymous"></script>
 <header>
-    Header
-
-    <ul>
+    <nav id = "navHeader" class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/users/home">
+                <h3>
+                    <i class="fas fa-home"></i>
+                 </h3>
+            </a>
+              <% if (locals.user){ %>
+                <div id="user-info">
+                    <div>
+                        <h3><a id="user-name" href="/users/profile/<%= user.id%>"><%= user.name %></a></h3>
+                    </div>
+                    <div>
+                        <a href="/users/sign-out"><button class="btn btn-primary" type="button">Sign Out</button></a>
+                    </div>
+                </div>
+                <% } else {%>
+                    <div id="register">
+                        <div>
+                            <a href="/users/sign-in"><button class="btn btn-primary" type="button">Sign In</button></a>
+                        </div>
+                        <div>
+                            <a href="/users/sign-up"><button class="btn btn-primary" type="button">Sign Up</button></a>
+                        </div>
+                    </div>
+            <% }%>
+        </div>
+    </nav>
+    <!-- <ul>
         <% if (locals.user){ %>
             <li><a href="/users/user_profile"><%= user.name %></a></li>
             <li>
@@ -15,5 +44,5 @@
                     <a href="/users/sign-up">Sign Up</a>
                 </li>
             <% }%>
-    </ul>
+    </ul> -->
 </header>

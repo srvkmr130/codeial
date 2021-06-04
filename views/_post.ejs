@@ -1,13 +1,13 @@
-<li>
-    <% if(locals.user && (locals.user.id == post.user.id)) {%>
-        <a href="/posts/destroy/<%= post.id %>"> X </a>
-        <% } %>
-
-        
-    <%=post.content%>
-    (post by : <%= post.user.name%>)
-
-    <div>
+<div class="card">
+    <div class="card-header">
+        <% if(locals.user && (locals.user.id == post.user.id)) {%>
+            <a href="/posts/destroy/<%= post.id %>"> X </a>
+            <% } %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%=post.content%></h5>
+      <p class="card-text"> post by : <%= post.user.name%></p>
+      <div>
         <ul>
             <% for (comment of post.comments) { %>
                 <%- include('_comment.ejs') %>
@@ -21,4 +21,14 @@
             <input type="submit" value="Comment">
         </form>
     </div>
+    </div>
+  </div>
+
+
+    
+
+        
+    
+
+   
 </li>

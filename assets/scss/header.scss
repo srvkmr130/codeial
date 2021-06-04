@@ -1,0 +1,51 @@
+// SCSS Variables
+$bg-color:#6f4698;
+$bg-color-hover:#deb1c978;
+
+.btn-primary {
+    background-color: $bg-color;
+    &:hover{
+        background-color:$bg-color-hover;
+        border-color: transparent;
+        box-shadow: 6px 7px 10px 2px #9f6db1;
+        color: #370347;
+    }
+    border-color: #5b0879;
+}
+
+#navHeader{
+    background: linear-gradient(to bottom, #9a6c97,#b3a8bf);
+    .navbar-brand{
+        color: #3f2c52;
+    }
+    #user-info{
+        display: flex;
+        div{
+            h3{
+                margin-top: 2%;
+                &:hover{
+                    // transition: 0.5s all ease-in-out;
+                    // transform:scale(1.1,1);
+                    animation: jello;
+                    animation-duration: 0.5s;
+                }
+            }
+            #user-name{
+                text-decoration: none;
+                color: #3f2c52;
+                padding: 4px 8px;
+                &:hover{
+                    color:#5b0879;
+                    transition: 1s all ease-in-out;
+                }
+            }
+            margin:0 15px;
+        }
+    }
+    #register{
+        display: flex;
+        div{
+            margin-left: 15px;
+        }
+    }
+}

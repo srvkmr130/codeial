@@ -1,7 +1,23 @@
-<form action="/users/create" method="POST">
-    <input name="name" type="text" placeholder="UserName" required>
-    <input name="email" type="email" placeholder="Email">
-    <input name="password" type="password" required placeholder="Password">
-    <input name="confirm_password" type="password" required placeholder="Confirm Password">
-    <button type="submit">Sign Up !!</button>
-</form> 
+<link rel="stylesheet" href="/css/sign-up.css">
+<div id ="sign-up">
+    <h2>Sign Up ... </h2>
+    <form action="/users/create" method="POST">
+        <div class="mb-3">
+            <input name="name" type="text" placeholder="UserName" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+          <input name="email" type="email" placeholder="Email" class="form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <input name="password" type="password" required placeholder="Password" class="form-control" id="inputPassword1">
+        </div>
+        <div class="mb-3">
+          <input name="confirm_password" type="password" required placeholder="Confirm Password" class="form-control" id="inputPassword2">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="remember">
+          <label class="form-check-label" for="remember">Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up !!</button>
+      </form>
+</div>

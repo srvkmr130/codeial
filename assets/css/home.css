@@ -5,3 +5,12 @@
   color: red; }
   #detailSection p:hover {
     color: black; }
+
+#homescreen-wall {
+  display: flex; }
+  #homescreen-wall #posts-section {
+    width: 70%;
+    padding: 10px 0 0 20px; }
+  #homescreen-wall #friends-section {
+    width: 30%;
+    padding: 10px; }
