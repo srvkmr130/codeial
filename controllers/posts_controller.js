@@ -1,15 +1,26 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 
-module.exports.create = function(req,res){
-    console.log('here');
-    Post.create({
-        content:req.body.content,
-        user:req.user._id
-    }, function(err,post){
-        if(err){console.log('error in creating a post');return;}
+module.exports.create = async function(req,res){
+    try {
+        let post = await Post.create({
+            content:req.body.content,
+            user:req.user._id
+        });
+        if(req.xhr){
+            req.flash('success','Post Published !!');
+            return res.status(200).json({
+                response:
+                {
+                    post : post
+                },
+                message:"Post created !!"
+            });
+        }
+    } catch (error) {
+        req.flash('error',error);
         return res.redirect('back');
-    });
+    }
 }
 
 module.exports.destroy = function(req,res){

@@ -17,6 +17,11 @@ $bg-color-hover:#deb1c978;
     background: linear-gradient(to bottom, #9a6c97,#b3a8bf);
     .navbar-brand{
         color: #3f2c52;
+        .fa-home{
+            &:hover{
+                color: #deb1c978;
+            }
+        }
     }
     #user-info{
         display: flex;

@@ -1,19 +1,26 @@
-<div class="card">
+<div id="post-<%= post._id%>" class="card">
     <div class="card-header">
+        <% let createdDate = post.createdAt.toString().split(" ");
+            let date = `${createdDate[1]} ${createdDate[2]},${createdDate[3]} - ${createdDate[0]}`;  
+        %>
+        <i class="far fa-calendar-alt"></i>
+        Post published on : <%= date%>
         <% if(locals.user && (locals.user.id == post.user.id)) {%>
-            <a href="/posts/destroy/<%= post.id %>"> X </a>
+            <a class="delete-post-button" href="/posts/destroy/<%= post.id %>"> <i class="fas fa-trash-alt"></i> </a>
             <% } %>
+        
     </div>
     <div class="card-body">
       <h5 class="card-title"><%=post.content%></h5>
-      <p class="card-text"> post by : <%= post.user.name%></p>
-      <div>
-        <ul>
-            <% for (comment of post.comments) { %>
-                <%- include('_comment.ejs') %>
-            <% } %>
-        </ul>
-    </div>
+      <% let postCreatorName =  locals.user && locals.user.id == post.user.id ? "you" : post.user.name %>
+      <p class="card-text"> post by : <%= postCreatorName %></p>
+        <div>
+            <ul>
+                <% for (comment of post.comments) { %>
+                    <%- include('_comment.ejs') %>
+                <% } %>
+            </ul>
+        </div>
     <div>
         <form action="/comments/create" method="POST">
             <input name="content" type="text" placeholder="Add comment...">

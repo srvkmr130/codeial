@@ -11,6 +11,51 @@
   #homescreen-wall #posts-section {
     width: 70%;
     padding: 10px 0 0 20px; }
+    #homescreen-wall #posts-section #feed-posts #new-post-form {
+      width: 70%;
+      margin: auto;
+      margin-top: 2%;
+      padding: 15px;
+      border-radius: 20px;
+      background: radial-gradient(white, #87416678); }
+      #homescreen-wall #posts-section #feed-posts #new-post-form textarea {
+        background: radial-gradient(white, #d8cad178);
+        border: 2px solid white; }
+  #homescreen-wall #display-posts {
+    margin: 5% 0; }
+    #homescreen-wall #display-posts h4 {
+      text-align: center; }
+    #homescreen-wall #display-posts #posts-list-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%; }
+      #homescreen-wall #display-posts #posts-list-container .card {
+        background: radial-gradient(white, #987b8b78);
+        border-radius: 20px;
+        margin: 1%;
+        width: 70%; }
+        #homescreen-wall #display-posts #posts-list-container .card .card-header {
+          position: relative; }
+          #homescreen-wall #display-posts #posts-list-container .card .card-header .fa-calendar-alt {
+            margin-right: 2%; }
+          #homescreen-wall #display-posts #posts-list-container .card .card-header .delete-post-button {
+            position: absolute;
+            right: 2%;
+            color: #d45252; }
+            #homescreen-wall #display-posts #posts-list-container .card .card-header .delete-post-button:hover {
+              color: #3f2c52; }
   #homescreen-wall #friends-section {
     width: 30%;
     padding: 10px; }
+    #homescreen-wall #friends-section #display-users h4 {
+      text-align: center; }
+    #homescreen-wall #friends-section #display-users li {
+      position: relative; }
+      #homescreen-wall #friends-section #display-users li > div {
+        padding: 0 5%; }
+      #homescreen-wall #friends-section #display-users li .fa-circle {
+        color: green;
+        position: absolute;
+        left: 3%;
+        top: 35%; }

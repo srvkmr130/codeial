@@ -9,6 +9,8 @@ module.exports.home = async function(req,res)
         .populate('user') //populate the user of each post 
         .populate({path:'comments' , populate:{path:'user'}}) ; // nested populate
         
+        let post = posts[0];
+        console.log(post.createdAt.toString().split(" "));
         
         let users = await User.find({});
 

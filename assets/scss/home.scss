@@ -14,10 +14,74 @@
     #posts-section{
         width: 70%;
         padding:10px 0 0 20px;
+        #feed-posts{
+            #new-post-form{
+                width: 70%;
+                margin: auto;
+                margin-top: 2%;
+                padding: 15px;
+                border-radius: 20px;
+                background: radial-gradient(white, #87416678);
+                textarea{
+                    background: radial-gradient(white, #d8cad178);
+                    border:2px solid white;
+                }
+            }
+        }
+    }
+    #display-posts{
+        margin: 5% 0;
+        h4{
+            text-align: center;
+        }
+        #posts-list-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            .card{
+                background:radial-gradient(white, #987b8b78);
+                border-radius:20px;
+                margin: 1%;
+                width: 70%;
+                .card-header{
+                    position: relative;
+                    .fa-calendar-alt{
+                        margin-right: 2%;
+                    }
+                    .delete-post-button{
+                        position: absolute;
+                        right:2%;
+                        color:#d45252;
+                        &:hover{
+                            color:#3f2c52;
+                        }
+                    }
+                }
+            }
+        }
     }
     #friends-section{
         width: 30%;
         padding: 10px;
+        #display-users{
+            h4{
+                text-align: center;
+            }
+            li{
+                position: relative;
+                >div{
+                    padding: 0 5%;
+                }
+                .fa-circle{
+                    color: green;
+                    position: absolute;
+                    left: 3%;
+                    top: 35%;
+                }
+            }
+            
+        }
         // border-left: 1px solid #5b0879;
     }
 }

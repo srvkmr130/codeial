@@ -5,13 +5,19 @@
 <div id="homescreen-wall">
     <div id="posts-section">
         <section id="feed-posts">
-            <h4> Posts </h4>
-            <form action="/posts/create-post" id = "new-form-post" method = "post">
-                <textarea name="content" cols="30" rows="5"></textarea>
-                <input type="submit" value="Post">
+            <% if(locals.user && (locals.user.id == post.user.id)) {%>
+            <form action="/posts/create-post" id = "new-post-form" method = "post">
+                <div class="mb-3">
+                    
+                    <label for="feed-post" class="form-label">Hey , <%= user.name.split(" ")[0]%> what's up ?? </label>
+                    <textarea  name="content" class="form-control" id="feed-post" rows="3"></textarea>
+                  </div>
+                  <button class="btn btn-primary" type="submit"> Post </button>
             </form>
+            <% } %>
         </section>
         <section id="display-posts">
+            <h4> <i class="fab fa-ioxhost"></i> Recent Posts </h4>
             <div id ="posts-list-container">
                     <% for(post of posts) { %>
                         <%- include('_post.ejs') %>
@@ -22,12 +28,20 @@
     <div id="friends-section">
         <section id="display-users">
             <h4>Friends</h4>
-            <% for(u of all_users) { %> 
-                <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
-            <% } %>
+            <ol class="list-group">
+                <% for(u of all_users) { %> 
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold"><i class="fas fa-circle"></i><a href="/users/profile/<%= u.id %>"><%= u.name %></a></div>
+                    Last seen : Today
+                  </div>
+                  <span class="badge bg-primary rounded-pill">14</span>
+                </li>
+                <% } %>
         </section>
     </div>
 </div>
+<script src="/js/home_posts.js"></script>
 
 
 
