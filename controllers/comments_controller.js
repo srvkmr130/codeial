@@ -15,7 +15,15 @@ module.exports.create = async function(req,res){
             post.comments.push(comment); 
             post.save();
 
-            return res.redirect('/');
+            if(req.xhr)
+            {
+                return res.status(200).json({
+                    data:{
+                        comment : comment
+                    },
+                    message:'Comment Created'
+                });
+            }
         }
     } catch (error) {
         console.log('Error',error);

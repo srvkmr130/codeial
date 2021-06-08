@@ -6,6 +6,7 @@ module.exports.home = async function(req,res)
     //{user:req.user._id}
     try {
         let posts = await Post.find({})
+        .sort('-createdAt')
         .populate('user') //populate the user of each post 
         .populate({path:'comments' , populate:{path:'user'}}) ; // nested populate
         
