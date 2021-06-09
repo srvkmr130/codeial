@@ -15,50 +15,16 @@
                     flashNoty('Post Published !!','success');
                     deletePost($(' .delete-post-button',newPost));
                     createComment($(' .new-comment-form',newPost));
+                    
                 },
                 error: function(err){
                     console.log(err.responseText);
                 }
             });
+
+            // this will reset the form input fields after submission
+            this.reset();
         });
-    }
-
-    let flashNoty = function(message,type){
-        new Noty({
-            theme: 'relax',
-            text: message,
-            type: type,
-            layout:'topCenter',
-            timeout:1500
-        }).show();
-    }
-
-    let createComment = function(addCommentLink){
-        $(addCommentLink).submit(function (e) { 
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: "/comments/create",
-                data: addCommentLink.serialize(),
-                success: function (data) {
-                    let newComment = newCommentDOM(data.data.comment);
-                    let associatedPost = `#post-${data.data.comment.post} .comments-list-container`;
-                    flashNoty('Comment Published !!','success');
-                    $(associatedPost).prepend(newComment);
-                },error: function(err){
-                    console.log(err.responseText);
-                }
-            });
-        });
-    }
-
-    let newCommentDOM = function(comment)
-    {
-        return `<li id="comment-${comment._id}"> 
-                    <a href="/comments/destroy/${comment._id}"> X </a>
-                    ${comment.content} by : 
-                    <em>you</em>
-                </li>`
     }
 
     //method to create a post in DOM
@@ -89,12 +55,48 @@
       </div>`);
     }
 
-    function deletePostFunc()
+    // method to submit the form data of a new comment using AJAX
+    let createComment = function(addCommentLink){
+        $(addCommentLink).submit(function (e) { 
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                url: "/comments/create",
+                data: addCommentLink.serialize(),
+                success: function (data) {
+                    let newComment = newCommentDOM(data.data.comment);
+                    let associatedPost = `#post-${data.data.comment.post} .comments-list-container`;
+                    flashNoty('Comment Published !!','success');
+                    $(associatedPost).prepend(newComment);
+                    deleteSelectedComment($(' .delete-comment-button',newComment));
+                },error: function(err){
+                    console.log(err.responseText);
+                }
+            });
+
+            this.reset();
+        });
+    }
+
+    //method to create a comment in DOM
+    let newCommentDOM = function(comment)
+    {
+        return $(`<li id="comment-${comment._id}"> 
+                    ${comment.content} by : 
+                    <em>you</em>
+                    <a class = "delete-comment-button" href="/comments/destroy/${comment._id}"> <button type="button" class="btn btn-outline-danger"><em>Remove</em></button></a>
+                </li>`);
+    }
+
+    // Traverse to each existing post and associated comments and link delete operation
+    // Add AJAX deletion to all the posts which are already present on the page
+    function deleteItems()
     {
         let posts = $('#posts-list-container>div');
         for(post of posts)
         {
             deletePost($(' .delete-post-button',post));
+            deleteComment($(' .comments-list-container>li',post));
             createComment($(' .new-comment-form',post));
         }
     }
@@ -117,7 +119,45 @@
         });
     }
 
+    let deleteSelectedComment = function(deleteCommentLink){
+        $(deleteCommentLink).click(function (e) { 
+            e.preventDefault();
+            
+            $.ajax({
+                type: "get",
+                url: $(deleteCommentLink).prop('href'),
+                success: function (data) {
+                    $(`#comment-${data.data.comment_id}`).remove();
+                    flashNoty('Comment deleted !!','info');
+                },
+                error: function(err){
+                    console.log(err.responseText);
+                }
+            });
+        });
+    }
+    // Associate delete link to each comment contained within a post 
+    let deleteComment = function(commentsList){
+        for(let comment of commentsList)
+        {
+            console.log(comment);
+            deleteSelectedComment($(' .delete-comment-button',comment));
+        }
+    }
+
+
+    let flashNoty = function(message,type){
+        new Noty({
+            theme: 'relax',
+            text: message,
+            type: type,
+            layout:'topCenter',
+            timeout:1500
+        }).show();
+    }
+
+
     createPost();
-    deletePostFunc();
+    deleteItems();
 
 }
