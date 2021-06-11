@@ -1,5 +1,7 @@
 const User = require('../models/user');
 const Post = require('../models/post');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function(req,res)
 {
@@ -8,20 +10,43 @@ module.exports.profile = function(req,res)
         return res.render('user_profile',{
             profile_user:user
         });
-    })
+    });
 }
 
-module.exports.update = function(req,res)
+module.exports.update = async function(req,res)
 {
-    console.log('Here')
     if(req.user.id == req.params.id)
     {
-        User.findByIdAndUpdate(req.params.id, req.body, function(err,user){
-            return res.redirect('back');
+        try {
+        let user = await User.findById(req.params.id);
+        User.uploadedAvatar(req,res,function(error){
+            if(error) { console.log('----Multer: error------:',error);}
+
+            else{
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                if(req.file)
+                {
+                    if(user.avatar)
+                    {
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                    }
+
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                req.flash('success','Updated !!');
+                user.save();
+                return res.redirect('back');
+            }
         });
+        } catch (error) {
+            console.log('Error',error)
+        }
     }
     else
     {
+        req.flash('error','Unauthorized');
         return res.status(401).send('Unauthorized');
     }
 }
