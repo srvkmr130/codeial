@@ -23,6 +23,8 @@ function(req,email,password,done)
             req.flash('error','Invalid Username/Password');
             return done(null,false);
         }
+
+        // set user in the cookie
         return done(null,user);
     });
 }
