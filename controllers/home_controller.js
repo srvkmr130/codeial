@@ -7,11 +7,8 @@ module.exports.home = async function(req,res)
     try {
         let posts = await Post.find({})
         .sort('-createdAt')
-        .populate('user') //populate the user of each post 
+        .populate('user','-password -__v') //populate the user of each post excluding password and version number
         .populate({path:'comments' , populate:{path:'user'}}) ; // nested populate
-        
-        let post = posts[0];
-        console.log(post.createdAt.toString().split(" "));
         
         let users = await User.find({});
 
