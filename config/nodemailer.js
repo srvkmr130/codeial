@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const ejs = require('ejs');
 const path = require('path');
 
 // this defines how communication will take place
@@ -19,7 +20,7 @@ let renderTemplate = (data , relativePath) =>{
     path.join(__dirname,'../views/mailers',relativePath),
     data,
     function(err,template){
-        if(err) {console.log('ERror in rendering Template'); return;}
+        if(err) {console.log('Error in rendering Template'); return;}
 
         mainHTML = template;
         }
