@@ -1,6 +1,8 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const commentEmailWorker= require('../workers/comment_email_worker');
+const queue = require('../config/kue');
 
 module.exports.create = async function(req,res){
 
@@ -17,7 +19,13 @@ module.exports.create = async function(req,res){
             post.save();
 
             comment = await comment.populate('user','name email').execPopulate();
-            commentsMailer.newComment(comment);
+            // commentsMailer.newComment(comment); // It will directly send the email as soon as the execution hits this line.
+
+            // instead of directly sending emails (from the controller , in real time), we ask worker to send emails for us based on priority(i.e in different time interval / delayed jobs)
+            let job = queue.create('emails',comment).save(function(err){    // queue.create() helps us to create a new job inside the queue , if queue doesn't exist it will create the queue for us
+                if(err) { console.log('Error',err); return;}
+                console.log('Job Enqueued with Id:',job.id);
+            });
 
             if(req.xhr)
             {
