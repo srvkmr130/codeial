@@ -18,6 +18,7 @@ body{
 }
 .form-control:focus,
 .form-select:focus, 
+.form-check-input:focus,
 input:focus{
   box-shadow: inset 0 -1px 0 #ddd;
   border: 0;
@@ -27,6 +28,7 @@ input:focus{
 #navHeader{
     h4{
         display: inline-block;
+        color:#350546;
     }
     background: linear-gradient(to bottom, #9a6c97,#b3a8bf);
     .d-flex{
@@ -72,22 +74,23 @@ input:focus{
                 text-align: center;
             }
         }
-        // #google-sign-in{
-        //     margin-top: 3.5%;
-        //     border-top: 2px solid #6f3f3f38;
-        //     padding-top: 3.5%;
-        //     #google-auth-container{
-        //         display: flex;
-        //         #google-icon{
-        //             position: relative;
-        //             padding-right: 10px;
-        //         }
-        //     }
-        // }
+        #google-sign-in{
+            margin-top: 3.5%;
+            border-top: 2px solid #6f3f3f38;
+            padding-top: 3.5%;
+            #google-auth-container{
+                display: flex;
+                #google-icon{
+                    position: relative;
+                    padding-right: 10px;
+                }
+            }
+        }
         animation: fadeInRight;
         animation-duration: 1s;
         color: $bg-color !important;
-        background: radial-gradient(#9e69cc, #d0749d6e);
+        // background: radial-gradient(#9e69cc, #d0749d6e);
+        background: linear-gradient(131deg, #87ceeb29,#8000806c,#0000ff4b,#00800057,#ff000048,#ffff0060, transparent);
         width: 35%;
         text-align: center;
         position: absolute;

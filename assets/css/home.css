@@ -18,6 +18,15 @@
       padding: 15px;
       border-radius: 20px;
       background: radial-gradient(white, #87416678); }
+      #homescreen-wall #posts-section #feed-posts #new-post-form #upload-file-btn {
+        margin: 3% 0; }
+        #homescreen-wall #posts-section #feed-posts #new-post-form #upload-file-btn #upload-file-container {
+          display: flex; }
+          #homescreen-wall #posts-section #feed-posts #new-post-form #upload-file-btn #upload-file-container #upload-icon {
+            position: relative;
+            padding-right: 10px; }
+      #homescreen-wall #posts-section #feed-posts #new-post-form #post-btn {
+        margin-left: 42.5%; }
       #homescreen-wall #posts-section #feed-posts #new-post-form textarea {
         background: radial-gradient(white, #d8cad178);
         border: 2px solid white; }

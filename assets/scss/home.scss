@@ -15,13 +15,28 @@
         width: 70%;
         padding:10px 0 0 20px;
         #feed-posts{
+
             #new-post-form{
+                #upload-file-btn{
+                    margin: 3% 0;
+                    #upload-file-container{
+                        display: flex;
+                        #upload-icon{
+                            position: relative;
+                            padding-right: 10px;
+                        }
+                    }
+                }
+                #post-btn{
+                    margin-left: 42.5%;
+                }
                 width: 70%;
                 margin: auto;
                 margin-top: 2%;
                 padding: 15px;
                 border-radius: 20px;
                 background: radial-gradient(white, #87416678);
+                // background: linear-gradient(131deg, #87ceeb29,#8000806c,#0000ff4b,#00800057,rgba(255, 166, 0, 0.356),#ff000048,#ffff0060, transparent);
                 textarea{
                     background: radial-gradient(white, #d8cad178);
                     border:2px solid white;

@@ -1,0 +1,9 @@
+#google-sign-in {
+  margin-top: 3.5%;
+  border-top: 2px solid #6f3f3f38;
+  padding-top: 3.5%; }
+  #google-sign-in #google-auth-container {
+    display: flex; }
+    #google-sign-in #google-auth-container #google-icon {
+      position: relative;
+      padding-right: 10px; }

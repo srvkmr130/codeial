@@ -11,9 +11,18 @@
                     
                     <label for="feed-post" class="form-label">Hey , <%= user.name.split(" ")[0]%> what's up ?? </label>
                     <textarea  name="content" class="form-control" id="feed-post" rows="3"></textarea>
-                    <button type="button" class="btn btn-primary btn-sm">Small button</button>
+                    <button id="upload-file-btn" type="button" class="btn btn-primary btn-sm">
+                        <div id="upload-file-container">
+                            <div id="upload-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <div>
+                                Upload File
+                            </div>
+                        </div>
+                    </button>
                   </div>
-                  <button class="btn btn-primary" type="submit"> Post </button>
+                  <button id="post-btn" class="btn btn-primary" type="submit"> Post </button>
             </form>
             <% } %>
         </section>
