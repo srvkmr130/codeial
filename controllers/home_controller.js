@@ -8,7 +8,8 @@ module.exports.home = async function(req,res)
         let posts = await Post.find({})
         .sort('-createdAt')
         .populate('user','-password -__v') //populate the user of each post excluding password and version number
-        .populate({path:'comments' , populate:{path:'user'}}) ; // nested populate
+        .populate({path:'comments' , populate:{path:'user'}}) // nested populate
+        .populate('likes'); 
         
         let users = await User.find({});
 
@@ -18,7 +19,7 @@ module.exports.home = async function(req,res)
         });
         
     }catch (error) {
-        console.log('Error',err);
+        console.log('Error in rendering view',error);
         return;
     }
 }

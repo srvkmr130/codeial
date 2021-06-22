@@ -1,5 +1,6 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const Like = require('../models/like');
 const commentsMailer = require('../mailers/comments_mailer');
 const commentEmailWorker= require('../workers/comment_email_worker');
 const queue = require('../config/kue');
@@ -24,7 +25,7 @@ module.exports.create = async function(req,res){
             // instead of directly sending emails (from the controller , in real time), we ask worker to send emails for us based on priority(i.e in different time interval / delayed jobs)
             let job = queue.create('emails',comment).save(function(err){    // queue.create() helps us to create a new job inside the queue , if queue doesn't exist it will create the queue for us
                 if(err) { console.log('Error',err); return;}
-                console.log('Job Enqueued with Id:',job.id);
+                console.log('Job Enqueued with Id:',job.id);  //to view the jobs in UI form run cmd : [./node_modules/kue/bin/kue-dashboard] . The server will start and run in port 3000
             });
 
             if(req.xhr)
@@ -49,6 +50,13 @@ module.exports.destroy = async function(req,res){
     if(comment.user == req.user.id){
         let postId = comment.post;
         comment.remove();
+
+        //delete the like associated with this comment
+        await Like.deleteOne({ 
+            likeable:req.params.id,
+            onModel:'Comment'
+        });
+
         await Post.findByIdAndUpdate(postId , {$pull:{comments:req.params.id}});
         
         if(req.xhr)

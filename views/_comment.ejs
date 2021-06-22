@@ -4,4 +4,15 @@
     <% if(locals.user && (locals.user.id == comment.user.id)) {%>
         <a class = "delete-comment-button" href="/comments/destroy/<%= comment.id %>">  <button type="button" class="btn btn-outline-danger"><em>Remove</em></button> </a>
     <% } %>
+    <br>
+    <% if(locals.user) { %> 
+        <a class = "toggle-like-button" data-likes="<%= comment.likes.length %>"
+            href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+            <!-- <i class="far fa-thumbs-up"></i> -->
+            <%= comment.likes.length%> Likes
+        </a>
+    
+    <% } else { %> 
+        <%= comment.likes.length%> Likes 
+    <% } %>
 </li>

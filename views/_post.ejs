@@ -8,21 +8,41 @@
         <% if(locals.user && (locals.user.id == post.user.id)) {%>
             <a class="delete-post-button" href="/posts/destroy/<%= post.id %>"> <i class="fas fa-trash-alt"></i> </a>
         <% } %>
+
+        <br>
+        <!-- Display the likes of this post, if the user is logged in, then show the link to toggle likes, else, just show the count --> 
         
+        <% if(locals.user) { %> 
+            <a class = "toggle-like-button" data-likes="<%= post.likes.length %>"
+                href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                <% if(post.postLiked){ %> 
+                    <i class="fas fa-thumbs-up fa-lg"></i>
+                <%} else {%>
+                    <i class="far fa-thumbs-up fa-lg"></i>
+                <% } %>
+                <%= post.likes.length%> Likes
+            </a>
+        
+        <% } else { %> 
+            <%= post.likes.length%> Likes 
+        <% } %>
+
     </div>
     <div class="card-body">
       <h5 class="card-title"><%=post.content%></h5>
       <% let postCreatorName =  locals.user && locals.user.id == post.user.id ? "you" : post.user.name %>
       <p class="card-text"> post by : <%= postCreatorName %></p>
-        <div>
-            <ul class = "comments-list-container">
-                <% for (comment of post.comments) { %>
-                    <%- include('_comment.ejs') %>
-                <% } %>
-            </ul>
+        <div class="post-comments-list">
+            <ul id="post-comments-<%= post._id %>">
+                <% for (comment of post.comments){%>
+
+                    <%- include('_comment') -%>
+                    
+                
+                <%} %>
         </div>
     <div>
-        <form class = "new-comment-form" action="/comments/create" method="POST">
+        <form id="post-<%= post._id %>-comments-form" action="/comments/create" method="POST">
             <input name="content" type="text" placeholder="Add comment...">
             <input type="hidden" name="post" value="<%= post._id%>">
             <input type="submit" value="Comment">
@@ -31,11 +51,4 @@
     </div>
   </div>
 
-
-    
-
-        
-    
-
-   
 </li>

@@ -1,0 +1,6 @@
+// To Do 
+
+1. Update Password Functionality
+2. Friend Request Functionality
+3. Ability to Post images
+ 

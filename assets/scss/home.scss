@@ -64,6 +64,11 @@
                     .fa-calendar-alt{
                         margin-right: 2%;
                     }
+                    .like-dislike-section{
+                        .like{
+                            cursor: pointer;
+                        }
+                    }
                     .delete-post-button{
                         position: absolute;
                         right:2%;
@@ -96,6 +101,38 @@
                 }
             }
             
+        }
+        #chat-section{
+            position: fixed;
+            bottom: 0%;
+            height: 35%;
+            background-color: rgb(185, 164, 206);
+            #chatBox{
+                display: flex;
+                flex-direction: column;
+                #messageList{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    max-height: 80%;
+                    > div{
+                        
+                        width: 60%;
+                        margin: 2% 4%;
+                        padding: 9px 0 0 8.5px;
+                        line-height: 1.5rem;
+                    
+                    }
+                    > div:nth-child(2n){
+                        background-color: green;
+                        left: 30%; 
+                        position: relative;
+                    }
+                    > div:nth-child(2n+1){
+                        background-color: red;
+                    }
+                }
+            }
         }
         // border-left: 1px solid #5b0879;
     }
