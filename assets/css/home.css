@@ -6,6 +6,9 @@
   #detailSection p:hover {
     color: black; }
 
+.toggle-like-button i {
+  color: #2b648e; }
+
 #homescreen-wall {
   display: flex; }
   #homescreen-wall #posts-section {
@@ -70,30 +73,6 @@
         position: absolute;
         left: 3%;
         top: 35%; }
-    #homescreen-wall #friends-section #chat-section {
-      position: fixed;
-      bottom: 0%;
-      height: 35%;
-      background-color: #b9a4ce; }
-      #homescreen-wall #friends-section #chat-section #chatBox {
-        display: flex;
-        flex-direction: column; }
-        #homescreen-wall #friends-section #chat-section #chatBox #messageList {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          max-height: 80%; }
-          #homescreen-wall #friends-section #chat-section #chatBox #messageList > div {
-            width: 60%;
-            margin: 2% 4%;
-            padding: 9px 0 0 8.5px;
-            line-height: 1.5rem; }
-          #homescreen-wall #friends-section #chat-section #chatBox #messageList > div:nth-child(2n) {
-            background-color: green;
-            left: 30%;
-            position: relative; }
-          #homescreen-wall #friends-section #chat-section #chatBox #messageList > div:nth-child(2n+1) {
-            background-color: red; }
 
 footer {
   display: none !important; }

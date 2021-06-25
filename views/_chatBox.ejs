@@ -1,16 +1,22 @@
-<div id = "chatBox">
-    <div id = "messageList" >
-        <div>
-            <p> Message 1</p>
-        </div>
-        <div>
-            <p> Message 1</p>
+<% if(locals.user) { %>
+    <div id = "user-chat-box">
+        <ul id = "chat-messages-list">
+            <li class="recieved-message">
+                <span>
+                    Message 1
+                </span> 
+            </li>
+
+            <li class = "self-message">
+                <span>
+                    Self Message 2
+                </span> 
+            </li>
+        </ul>
+        <div id = "chat-message-input-container">
+            <input id = "chat-message-input" placeholder="Type message Here">
+            <button id = "send-message" class="btn btn-primary"> Send </button>
         </div>
     </div>
-    <div id = "sendMessageContainer">
-        <form action="/send-message" method="post">
-            <input type="text" name="message" placeholder="Type message Here">
-            <button class="btn btn-primary" type="submit">Send</button>
-        </form>
-    </div>
-</div>
+<% } %>
+
