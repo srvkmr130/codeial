@@ -1,0 +1,5 @@
+[0mGET /users/profile/609fb21aa7dcc412a0545edb [36m302[0m 97.015 ms - 72[0m
+[0mGET /users/sign-in [32m200[0m 134.053 ms - 4434[0m
+[0mPOST /users/create-session [36m302[0m 79.482 ms - 66[0m
+[0mGET /users/home [32m200[0m 82.654 ms - 9167[0m
+[0mGET /users/profile/609fb21aa7dcc412a0545edb [32m200[0m 16.287 ms - 3497[0m

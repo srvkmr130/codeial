@@ -1,4 +1,14 @@
+const fs = require('fs');
+const rfs = require('rotating-file-stream');
+const path = require('path');
 
+const logDirectory = path.join(__dirname,'../production_logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+const accessLogStream = rfs.createStream('access.log',{
+    interval:'1d',
+    path:logDirectory
+});
 
 const development = {
     name : 'development',
@@ -18,7 +28,11 @@ const development = {
     google_clientID : '334678263913-7lvt84eu344942v92qan36p8rr2al29h.apps.googleusercontent.com',
     google_clientSecret: '8o4Z-Np7FbKtOCaoeUWlZ9TA',
     google_callbackURL:'http://localhost:8000/users/auth/google/callback',
-    jwt_secret : 'codeial'
+    jwt_secret : 'codeial',
+    morgan:{
+        mode:'dev',
+        options:{stream:accessLogStream}
+    }
 }
 
 

@@ -1,0 +1,7 @@
+#detailSection h1 {
+  color: blue; }
+
+#detailSection p {
+  color: red; }
+  #detailSection p:hover {
+    color: black; }

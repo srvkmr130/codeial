@@ -1,0 +1,10 @@
+body {
+  background-color: #deb1c978;
+  color: #3f2c52;
+  height: 90%; }
+
+a {
+  text-decoration: none;
+  color: #a36ab4; }
+  a:hover {
+    color: #3f2c52; }
